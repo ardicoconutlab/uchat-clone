@@ -815,3 +815,7 @@ The code now has a central workspace-role permission map and a shared outbound-d
 ## 41. CRM contact API foundation added
 
 The prototype now supports typed contact inventory and creation with identity, tags, and consent state. The PostgreSQL schema remains the durable target for contact/identity records; API-level CRUD permission enforcement and merge/import/history features remain planned work.
+
+## 42. Outbound dispatch boundary added
+
+The implementation now has a worker-facing outbound text dispatcher and a protected internal dispatch endpoint. It runs consent, service-window, automation-pause, and approved-template guards before it can call the WhatsApp adapter. The endpoint is disabled unless its internal secret is configured. A durable PostgreSQL outbox worker still needs to claim intents, persist state transitions, and retry/reconcile provider failures.
