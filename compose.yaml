@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: convoflow
+      POSTGRES_USER: convoflow
+      POSTGRES_PASSWORD: convoflow_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - convoflow-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U convoflow -d convoflow"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  convoflow-postgres:

@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.next-prod/
+.env
+.env.local
+*.log
+coverage/
+work/pdf-review/
